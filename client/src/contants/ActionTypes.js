@@ -1,0 +1,4 @@
+export const GET_STUDENTS = 'GET_STUDENT';
+export const ADD_STUDENTS = 'ADD_STUDENT';
+export const UPDATE_STUDENTS = 'UPDATE_STUDENT';
+export const DELETE_STUDENTS = 'DELETE_STUDENT';

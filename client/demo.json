@@ -1,0 +1,82 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Giang",
+      "email": "giangnd@gmail.com",
+      "address": "hust"
+    },
+    {
+      "name": "Nong Duong",
+      "email": "nongduong@gmail.com",
+      "address": "HN",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "name": "Chuan",
+      "email": "duong@gmail",
+      "address": "HUST"
+    },
+    {
+      "name": "duong",
+      "email": "duong@gmail.com",
+      "address": "HUST",
+      "id": 5
+    },
+    {
+      "name": "duong2",
+      "email": "duong@gmail.com",
+      "address": "HUST",
+      "id": 7
+    },
+    {
+      "name": "duong3",
+      "email": "duong@gmail.com",
+      "address": "HUST",
+      "id": 8
+    },
+    {
+      "name": "duong4",
+      "email": "duong@gmail.com",
+      "address": "HUST",
+      "id": 9
+    },
+    {
+      "name": "duong5",
+      "email": "duong@gmail.com",
+      "address": "HUST",
+      "id": 10
+    },
+    {
+      "name": "duong",
+      "email": "duong@gmail",
+      "address": "QN",
+      "id": 16
+    },
+    {
+      "id": 17,
+      "name": "nngduongaaaaaaaa",
+      "email": "nongoyo@gmai",
+      "address": "kshjfs"
+    },
+    {
+      "id": "20",
+      "name": "ada",
+      "email": "ddddddd@gmail.com",
+      "address": "hsssss"
+    },
+    {
+      "id": "32",
+      "name": "afasfadac",
+      "email": "fs@ad",
+      "address": "adzas"
+    },
+    {
+      "id": "2",
+      "name": "qqq",
+      "email": "ads@dff",
+      "address": "aaa"
+    }
+  ]
+}
