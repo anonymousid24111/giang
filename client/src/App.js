@@ -1,11 +1,13 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter as 
+  Router,
   Switch,
   Route,
   Link,
   useParams,
-  useRouteMatch
+  useRouteMatch,
+  Redirect
 } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 
@@ -19,33 +21,20 @@ export default function App() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          {/* <p>username is {cookies.username?cookies.username:'null'}</p> */}
           {
            cookies.username?(
-           <>
-            <li>
-            <Link to="/User">User</Link>
-          </li>
-          <li>
-            <button onClick={()=>{removeCookie('username');}}>Logout</button>
-          </li>
-           </>)
+            <Redirect to="/user"/>
+           )
            :(<>
-            <li>
+          <a>
+            <Link to="/">Home</Link>
+          </a>
+            <a>
             <Link to="/Login">Login</Link>
-          </li>
-          <li>
+          </a>
+          <a>
             <Link to="/Signup">Signup</Link>
-          </li></>)}
-
-        </ul>
-
-        <hr />
-
+          </a></>)}
         <Switch>
           <Route exact path="/">
             <Home />

@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-import {Router} from 'react-router-dom'
+// import {Router} from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import { useCookies } from 'react-cookie';
@@ -14,7 +14,7 @@ function App() {
     // var mySubmit = (event) => {
           // event.preventDefault();
           axios.post('/login',data).then(res=>{
-            if(res.status==200){
+            if(res.status===200){
                 setCookie('username', res.data)
                 setIsLogin(true)
             }

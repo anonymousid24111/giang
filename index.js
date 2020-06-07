@@ -14,6 +14,8 @@ var message =require('./controllers/message.controller')
 var post =require('./controllers/post.controller')
 var react =require('./controllers/react.controller')
 var team =require('./controllers/team.controller')
+var search =require('./controllers/search.controller')
+
 Mongoose.connect("mongodb://localhost/project2",{ 
   useUnifiedTopology: true,
   useNewUrlParser: true    });
@@ -44,6 +46,7 @@ app.all('/private',(req, res)=>{
 app.get('/', (req, res)=>{
   res.send("ahhahaha")
 });
+app.get('/search', search.getOne)
 
 app.get('/user', user.getAll);
 app.get('/user/:id', user.getOne)
