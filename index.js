@@ -2,27 +2,24 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var Mongoose = require('mongoose');
+var user =require('./controllers/user.controller')
 Mongoose.connect("mongodb://localhost/project2",{ 
   useUnifiedTopology: true,
   useNewUrlParser: true    });
-var controller = require('./controllers/product.controller');
+// var controller = require('./controllers/product.controller');
 
 var port = 3000;
 var app = express();
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-app.get('/studentlist', controller.index);
-app.get('/student/:id/edit', controller.getid);
-app.delete('/student/:id', controller.deleteid);
-app.put('/student/:id/edit', controller.edit);
-app.post('/student/new', controller.create);
-app.post('/login', (req, res)=>{
-  console.log(req.body)
-  res.status(200).json({
-    data: "hihi"
-  })
-})
+app.get('/', (req, res)=>{
+  res.send("ahhahaha")
+});
+
+app.get('/user', user.getAll);
+app.put('/user/:id', user.put);
+app.post('/user', user.post);
 // app.delete('/student/:id', controller.d)
 
 app.listen(port, function() {
