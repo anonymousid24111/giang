@@ -1,10 +1,4 @@
-require('dotenv').config()
 var mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
 var channelScheme = new mongoose.Schema({
 	/*- Chanelname	String
@@ -15,5 +9,5 @@ var channelScheme = new mongoose.Schema({
 	post: [{ type: mongoose.Schema.Types.ObjectId, ref: 'post' }],
 	file: [{ type: mongoose.Schema.Types.ObjectId, ref: 'file' }],
 })
-global.channelScheme = global.channelScheme || mongoose.model('channel', channelScheme);	
-module.exports = global.channelScheme;
+channelModel = mongoose.model('channel', channelScheme);	
+module.exports = channelModel;

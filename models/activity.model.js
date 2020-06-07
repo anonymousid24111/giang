@@ -1,11 +1,4 @@
-require('dotenv').config()
 var mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
 var activitySchema = new mongoose.Schema({
   /*- Sender		String	Username	Alex Bla
 	- Subject		String	Alex Bla reacted to a post you upload
@@ -16,5 +9,5 @@ var activitySchema = new mongoose.Schema({
   subject: String,
   link: String
 })
-global.activitySchema = global.activitySchema || mongoose.model('activity', activitySchema);
-module.exports = global.activitySchema;
+activityModel = mongoose.model('activity', activitySchema);
+module.exports = activityModel;

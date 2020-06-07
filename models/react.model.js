@@ -1,10 +1,4 @@
-require('dotenv').config()
 var mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
 var reactSchema = new mongoose.Schema({
   /*- Reactname	String	Like, Care, Sad, Angry, Haha
@@ -14,5 +8,5 @@ var reactSchema = new mongoose.Schema({
   date: Date,
   reactname: String
 })
-global.reactSchema = global.reactSchema || mongoose.model('react', reactSchema);
-module.exports = global.reactSchema;
+reactModel = mongoose.model('react', reactSchema);
+module.exports = reactModel;

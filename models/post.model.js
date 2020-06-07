@@ -1,10 +1,4 @@
-require('dotenv').config()
 var mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
 var postSchema = new mongoose.Schema({
   /*- Sender		String	Username
@@ -19,5 +13,5 @@ var postSchema = new mongoose.Schema({
   react: [{ type: mongoose.Schema.Types.ObjectId, ref: 'react' }],
   reply: [{ type: mongoose.Schema.Types.ObjectId, ref: 'reply' }],
 })
-global.postSchema = global.postSchema || mongoose.model('post', postSchema);
-module.exports = global.postSchema;
+postModel = mongoose.model('post', postSchema);
+module.exports = postModel;

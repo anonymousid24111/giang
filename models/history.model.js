@@ -1,10 +1,4 @@
-require('dotenv').config()
 var mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
 var historyScheme = new mongoose.Schema({
     /*- connecter		String	ObjectID
@@ -15,5 +9,5 @@ var historyScheme = new mongoose.Schema({
 	date: Date,
 	status: String
 })
-global.historyScheme = global.historyScheme || mongoose.model('history', historyScheme);	
-module.exports = global.historyScheme;
+historyModel = mongoose.model('history', historyScheme);	
+module.exports = historyModel;

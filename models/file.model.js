@@ -1,10 +1,4 @@
-require('dotenv').config()
 var mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
 var fileSchema = new mongoose.Schema({
 	/*- Type		String	Image, docx, pdf
@@ -19,5 +13,5 @@ var fileSchema = new mongoose.Schema({
     datemodified: Date,
     location: String
 })
-global.fileSchema = global.fileSchema || mongoose.model('file', fileSchema);
-module.exports = global.fileSchema;
+fileModel =  mongoose.model('file', fileSchema);
+module.exports = fileModel;

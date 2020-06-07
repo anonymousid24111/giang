@@ -1,10 +1,4 @@
-require('dotenv').config()
 var mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
 var calendarSchema = new mongoose.Schema({
 	/*- Dateplan	Date
@@ -15,5 +9,5 @@ var calendarSchema = new mongoose.Schema({
     sender: { type: mongoose.Schema.Types.ObjectId, ref: 'team' },
   	content: String
 })
-global.calendarSchema = global.calendarSchema || mongoose.model('calendar', calendarSchema);
-module.exports = global.calendarSchema;
+calendarModel = mongoose.model('calendar', calendarSchema);
+module.exports = calendarModel;

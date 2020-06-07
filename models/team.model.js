@@ -1,10 +1,4 @@
-require('dotenv').config()
 var mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
 var teamScheme = new mongoose.Schema({
 	/*- Teamname	String
@@ -22,5 +16,5 @@ var teamScheme = new mongoose.Schema({
 	channel: [{ type: mongoose.Schema.Types.ObjectId, ref: 'channel' }],
 	detail: String
 })
-global.teamScheme = global.teamScheme || mongoose.model('team', teamScheme);	
-module.exports = global.teamScheme;
+teamModel = mongoose.model('team', teamScheme);	
+module.exports = teamModel;
