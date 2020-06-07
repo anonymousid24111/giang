@@ -2,10 +2,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var Mongoose = require('mongoose');
+var user =require('./controllers/user.controller')
 Mongoose.connect("mongodb://localhost/project2",{ 
   useUnifiedTopology: true,
   useNewUrlParser: true    });
+<<<<<<< HEAD
   var cookieParser = require('cookie-parser')
+=======
+// var controller = require('./controllers/product.controller');
+>>>>>>> e4b3aa9a801384c4c815e35aceadcee9530496c7
 
 // var controller = require('./controllers/product.controller');
 var jwt = require('jsonwebtoken')
@@ -41,6 +46,14 @@ app.all('/private',(req, res)=>{
 //     data: "hihi"
 //   })
 // })
+
+app.get('/', (req, res)=>{
+  res.send("ahhahaha")
+});
+
+app.get('/user', user.getAll);
+app.put('/user/:id', user.put);
+app.post('/user', user.post);
 // app.delete('/student/:id', controller.d)
 
 app.listen(port, function() {

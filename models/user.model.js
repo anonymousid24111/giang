@@ -1,11 +1,4 @@
-require('dotenv').config()
 var mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
 var userSchema = new mongoose.Schema({
 	/*
 	- Username	String
@@ -37,5 +30,6 @@ var userSchema = new mongoose.Schema({
 	calendar: [{ type: mongoose.Schema.Types.ObjectId, ref: 'calendar' }],
 	file: [{ type: mongoose.Schema.Types.ObjectId, ref: 'file' }]
 })
-global.userSchema = global.userSchema || mongoose.model('user', userSchema);
-module.exports = global.userSchema;
+var user = mongoose.model('user', userSchema);
+
+module.exports = user;
