@@ -7,17 +7,15 @@ import {
   useParams,
   useRouteMatch
 } from "react-router-dom";
+import { useCookies } from 'react-cookie';
+
 import Login from './pages/Login'
-// Since routes are regular React components, they
-// may be rendered anywhere in the app, including in
-// child elements.
-//
-// This helps when it's time to code-split your app
-// into multiple bundles because code-splitting a
-// React Router app is the same as code-splitting
-// any other React app.
+import Signup from './pages/Signup'
+import User from './pages/User'
 
 export default function App() {
+  const [cookies, setCookie, removeCookie] = useCookies(['username']);
+
   return (
     <Router>
       <div>
@@ -25,9 +23,25 @@ export default function App() {
           <li>
             <Link to="/">Home</Link>
           </li>
+          {/* <p>username is {cookies.username?cookies.username:'null'}</p> */}
+          {
+           cookies.username?(
+           <>
+            <li>
+            <Link to="/User">User</Link>
+          </li>
           <li>
+            <button onClick={()=>{removeCookie('username');}}>Logout</button>
+          </li>
+           </>)
+           :(<>
+            <li>
             <Link to="/Login">Login</Link>
           </li>
+          <li>
+            <Link to="/Signup">Signup</Link>
+          </li></>)}
+
         </ul>
 
         <hr />
@@ -38,6 +52,12 @@ export default function App() {
           </Route>
           <Route path="/Login">
             <Login />
+          </Route>
+          <Route path="/Signup">
+            <Signup />
+          </Route>
+          <Route path="/User">
+            <User />
           </Route>
         </Switch>
       </div>
