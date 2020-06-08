@@ -6,28 +6,40 @@ module.exports.getAll = async function(req, res) {
     var data = await muser.findOne({username:req.cookies.username},"chat member").populate({
         path: 'chat',
         // select: 'chat',
-        populate: { 
+        populate: [{ 
             path: 'message',
+            options:{ sort:{date : -1}}
             // select: ''
             // populate: {path: 'sender'},
             // populate: {path: 'viewer'},
             // populate: {path: 'react'}
         },
-        // populate: { 
-        // 	path: 'member',
-        // }
+        { 
+            path: 'member',
+            // path: 'message',
+            select: 'username'
+        }],
+        options:{ sort:{date : -1}}
       });
     res.status(200).json(data);
 };
 module.exports.getOne = async function(req, res) {
-    var oneUser = await mchat.findById(req.params.id, function(err, docs){
-        if (err) {
-            res.status(400).json(err)
-        }
-    }).populate({
-        path: 'message'
-    })
-    res.status(200).json(oneUser)
+    console.log(req.params.id)
+    if (!req.params.id) {
+        res.status(201).json('khong co params')
+    }
+    else{
+        var oneUser = await mchat.findById(req.params.id, function(err, docs){
+            if (err) {
+                res.status(400).json(err)
+            }
+        }).populate({
+            path: 'message',
+            options:{ sort:{date : -1}}
+        })
+        res.status(200).json(oneUser)
+
+    }
 };
 module.exports.put = async function(req, res) {
     var flag = false;
@@ -57,9 +69,9 @@ module.exports.post = async function(req, res){
 
         const message =await new mmessage({
             _id: new mongoose.Types.ObjectId(),
-            sender: req.cookies.username,
-            viewer: [req.cookies.username, req.body.viewer],
-            // react: [react3._id, react1._id],
+            sender: req.cookies.userid,
+            viewer: req.body.receiver,
+            date: Date(),
             content: req.body.content
         })
         const chat = await mchat.findByIdAndUpdate(req.params.id,{

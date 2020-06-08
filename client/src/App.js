@@ -14,6 +14,7 @@ import { useCookies } from 'react-cookie';
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import User from './pages/User'
+import { connection } from "mongoose";
 
 export default function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['username']);
@@ -23,7 +24,7 @@ export default function App() {
       <div>
           {
            cookies.username?(
-            <Redirect to="/user"/>
+            <></>
            )
            :(<>
           <a>
@@ -38,6 +39,8 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+            {cookies.token&&<Link to="/user">User</Link>}
+            
           </Route>
           <Route path="/Login">
             <Login />
@@ -46,7 +49,7 @@ export default function App() {
             <Signup />
           </Route>
           <Route path="/User">
-            <User />
+            {cookies.token?<User/>:<Redirect to="/"/>}
           </Route>
         </Switch>
       </div>

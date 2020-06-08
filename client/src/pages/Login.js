@@ -18,7 +18,9 @@ function App() {
                 setCookie('username', res.data.username)
                 setCookie('userid', res.data.userid)
                 setCookie('token', res.data.token)
-                setIsLogin(true)
+                setIsLogin(true);
+                window.location.href='/user'
+                // return <Redirect to="/user"/>w
             }
             else{
               seter(res.data)

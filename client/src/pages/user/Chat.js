@@ -13,67 +13,103 @@ import {
 } from "react-router-dom";
 import Message from '../../components/Message'
 const ENDPOINT = "http://localhost:3000";
+const socket = socketIOClient(ENDPOINT);
 function Chat(){
     const [cookies, setCookie] = useCookies(['userid']);
-    const socket = socketIOClient(ENDPOINT);
-    
-
-
     let { path, url } = useRouteMatch();
     let { id } = useParams();
-    const [current, setcurrent]= useState(id)
+    const [chatroomid, setchatroomid]= useState(id)
+    const [receiverid, setreceiverid]= useState()
     const [chats, setchats] = useState();
-    socket.emit("connectto", cookies.userid);
+    
     const [messages, setmessages] = useState();
     const [content, setcontent] = useState();
+
+    
     useEffect(()=>{
+        console.log('chay lan dau tien'+chatroomid)
+        socket.emit("connectto", cookies.userid);
         axios.get('/chat').then(res=>{
             setchats(res.data.chat);
+            if((res.status===200)&&(!chatroomid)) {setmessages(res.data.chat[0].message);
+                setchatroomid(res.data.chat[0]._id)
+                setreceiverid(res.data.chat[0].member)
+            }
+            else if(chatroomid){
+                // setchatroomid
+                axios.get( `/chat/${chatroomid}`).then((res)=>{
+                    setmessages(res.data.message);
+                })
+            }
         })
-        axios.get( `/chat/${current}`).then((res)=>{
-            setmessages(res.data.message);
-        })
+    },[])
+    useEffect(()=>{
+
+        console.log('chi chay khi chatroomid thay doi: '+chatroomid)
+        if(chatroomid){
+            axios.get( `/chat/${chatroomid}`).then((res)=>{
+                setmessages(res.data.message);
+            })
+        }
         socket.on('message', data=>{
             // alert('co tin nhan ')
+            console.log('effect 2 mess'+chatroomid)
             axios.get('/chat').then(res=>{
                 setchats(res.data.chat);
             })
-            alert("costien")
+            console.log(chatroomid)
+            // if(chatroomid){
+            axios.get( `/chat/${data.chatroomid}`).then((res)=>{
+                    setmessages(res.data.message);
+                })
+            // }
             
         })
-    },[current])
-        // alert(current)
-    //     socket.on(`message`,data=>{
-            
-    //     })
-    //     axios.get( `/chat/${current}`).then((res)=>{
-    //         setmessages(res.data.message);
-    // })
-    // },[current])
+        console.log('cuoi e3; '+chatroomid)
+    },[chatroomid])
 
     const handleSubmit =(e)=>{
         e.preventDefault();
-        socket.emit(`message`,{
-            sender: current,
-            receiver: cookies.userid
-        });
-        axios.post(`/chat/${current}`,{
-            content: content,
-            viewer: messages[0].viewer[0],
-
-        }).then(res=>{
+        if(chatroomid){
             
-        })
+    
+            axios.post(`/chat/${chatroomid}`,{
+                content: content,
+                viewer: receiverid,
+            }).then(res=>{
+                socket.emit(`message`,{
+                    sender: cookies.userid,
+                    receiver: receiverid,
+                    chatroomid: chatroomid
+                });
+                axios.get('/chat').then(res=>{
+                    setchats(res.data.chat);
+                    if((res.status===200)&&(!chatroomid)) {setmessages(res.data.chat[0].message);
+                        setchatroomid(res.data.chat[0]._id)
+                        setreceiverid(res.data.chat[0].member)
+                    }
+                    else if(chatroomid){
+                        // setchatroomid
+                        axios.get( `/chat/${chatroomid}`).then((res)=>{
+                            setmessages(res.data.message);
+                        })
+                    }
+                })
+            })
+
+        }
         
     }
     return(
         <Router>
             
             <div className="left">
+                {chatroomid}
                 {chats?chats.map((chat, index)=>{
-                    return(<div key={index}>
-                    <Link to={`${url}/${chat._id}`} onClick={e=>setcurrent(chat._id)}>{chat.chatname}</Link>
-                    <div>{chat.message[0].content}</div>
+                    return(<div key={index} onClick={e=>{setchatroomid(chat._id);setreceiverid(chat.member)}}>
+                    <Link to={`${url}/${chat._id}`} >{chat.chatname}{chat.member.length}</Link>
+                    {chat.message?<div>{chat.message[0].content}</div> :'loading...'}
+                    {/* <div>{chat.message[0].content}</div> */}
                     </div>
                     )
                 }):'Loading'}
@@ -82,7 +118,7 @@ function Chat(){
             <div className="right">
                 <div className='ite'>
                     <form className="form">
-                    <input name='content' value={content} placeholder="Enter your messages" onChange={e=>setcontent(e.target.value)}/>
+                    <input type='text' name='content' value={content} placeholder="Enter your messages" onChange={e=>setcontent(e.target.value)}/>
                     <button onClick={handleSubmit}>Send</button>
                     </form>
                     

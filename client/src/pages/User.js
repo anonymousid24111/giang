@@ -32,6 +32,11 @@ function App() {
   }
   return (
     <Router>
+      {!isLogin?(<Redirect
+            to={{
+              pathname: "/login",
+            }}
+          />):(<></>)}
       <div className="sidenav">
         <Link to={`/user/activity`}>activity</Link>
         <Link to={`/user/chat`}>chat</Link>
@@ -49,37 +54,33 @@ function App() {
         <p>This sidenav is always shown.</p>
         <button onClick={()=>test()}>test</button> */}
         <Switch>
-          <Route exact path="/user/activity">
+          <Route  path="/user/activity">
             <Home />
           </Route>
-          <Route exact path="/user/activity">
+          <Route  path="/user/activity">
             <Home />
           </Route>
-          <Route exact path="/user/chat">
+          <Route  path="/user/chat">
             <Chat />
           </Route>
-          <Route exact path="/user/assignment">
+          <Route  path="/user/assignment">
             <Home />
           </Route>
-          <Route exact path="/user/calendar">
+          <Route  path="/user/calendar">
             <Home />
           </Route>
-          <Route exact path="/user/file">
+          <Route  path="/user/file">
             <Home />
           </Route>
-          <Route exact path="/user/call">
+          <Route  path="/user/call">
             <Call />
           </Route>
-          <Route exact path="/user/team">
+          <Route  path="/user/team">
             <Home />
           </Route>
         </Switch>
       </div>
-      {!isLogin?(<Redirect
-            to={{
-              pathname: "/login",
-            }}
-          />):(<></>)}
+      
       
       <style jsx>{`
         .sidenav {

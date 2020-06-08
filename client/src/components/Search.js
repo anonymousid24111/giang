@@ -1,7 +1,10 @@
 import React,{ useState} from "react"
 import axios from "axios"
 import { set } from "mongoose";
+import { useCookies } from 'react-cookie';
+import { Redirect } from "react-router-dom";
 function Search(){
+  const [cookies, setCookie, removeCookie] = useCookies(['name']);
     const [users, setusers] = useState();
     const [key, setkey] = useState();
     const [display, setdisplay] = useState('none')
@@ -15,11 +18,18 @@ function Search(){
         });
         // setusers(data);
     }
-
+    const logout = () =>{
+      // alert('logit')
+      removeCookie('userid');
+      removeCookie('username');
+      removeCookie('token');
+      removeCookie('io');
+      return window.location.href = '/login';
+  }
     return(
         <div >
         <div className="topnav">
-            <a className="active" href="#home"><img src='/avatar.jpg' alt='avatar'/></a>
+            <a className="active" onClick={e=>logout()}><img src='/avatar.jpg' alt='avatar'/></a>
             <div className="search-container">
                 <form action="/action_page.php">
                 <input type="text" autoComplete="off" placeholder="Search.." name="search" onChange={handleChange} onBlur={e=>setdisplay('none')} onFocus={e=>setdisplay('block')}/>

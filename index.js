@@ -39,8 +39,8 @@ io.on('connection', socket => {
     console.log( `userid is ${userid} connected`)
   })
   socket.on('message', (data)=>{
-    console.log("message "+data.receiver)
-    io.to(data.sender).to(data.receiver).emit('message', 'co tin nhan moi')
+    console.log(data.receiver)
+    io.to(data.receiver[0]._id).to(data.receiver[1]._id).emit('message', data)
 
     // io.to(data.member[1]).emit('message', {
     //   username: data.member[0],

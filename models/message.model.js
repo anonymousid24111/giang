@@ -6,9 +6,10 @@ var messageSchema = new mongoose.Schema({
 	- React 		Array	ObjectID React
 	- Content		String	Message, link, image, video. */
 	id: String,
-	sender: String,
-	viewer: [String],
+	sender: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
+	viewer: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
 	react: [{ type: mongoose.Schema.Types.ObjectId, ref: 'react' }],
+	date: Date,
 	content: String
 })
 messageModel = mongoose.model('message', messageSchema);
