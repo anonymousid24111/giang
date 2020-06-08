@@ -1,0 +1,36 @@
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cd3"), 
+    "post" : [
+
+    ], 
+    "file" : [
+        ObjectId("5edc6ac9fdee8a1fcc006cbe"), 
+        ObjectId("5edc6ac9fdee8a1fcc006cc0")
+    ], 
+    "channelname" : "channel1", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cd5"), 
+    "post" : [
+
+    ], 
+    "file" : [
+        ObjectId("5edc6ac9fdee8a1fcc006cc0"), 
+        ObjectId("5edc6ac9fdee8a1fcc006cc2")
+    ], 
+    "channelname" : "channel2", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cd7"), 
+    "post" : [
+
+    ], 
+    "file" : [
+        ObjectId("5edc6ac9fdee8a1fcc006cc2"), 
+        ObjectId("5edc6ac9fdee8a1fcc006cc2")
+    ], 
+    "channelname" : "channel3", 
+    "__v" : NumberInt(0)
+}

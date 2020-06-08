@@ -1,7 +1,7 @@
 var mUser = require('../models/user.model');
 module.exports.getAll = async function(req, res) {
     var allUser = await mUser.find();
-    res.status(200).json(allUser);
+    res.status(200).json(req.cookies.id);
 };
 module.exports.getOne = async function(req, res) {
     var oneUser = await mUser.find({_id: req.params.id});

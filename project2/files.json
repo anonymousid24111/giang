@@ -1,0 +1,27 @@
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cbe"), 
+    "type" : "jpg", 
+    "filename" : "test jpg", 
+    "link" : "test.jpg", 
+    "datemodified" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "location" : "somewhere", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cc0"), 
+    "type" : "txt", 
+    "filename" : "test txt", 
+    "link" : "test.txt", 
+    "datemodified" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "location" : "somewhere", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cc2"), 
+    "type" : "docx", 
+    "filename" : "test docx", 
+    "link" : "test.docx", 
+    "datemodified" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "location" : "somewhere", 
+    "__v" : NumberInt(0)
+}

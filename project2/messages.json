@@ -1,0 +1,39 @@
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006ceb"), 
+    "viewer" : [
+        "username2"
+    ], 
+    "react" : [
+        ObjectId("5edc6ac9fdee8a1fcc006cd9"), 
+        ObjectId("5edc6ac9fdee8a1fcc006cdb")
+    ], 
+    "sender" : "username1", 
+    "content" : "content that user1 send to user2", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006ced"), 
+    "viewer" : [
+        "username1"
+    ], 
+    "react" : [
+        ObjectId("5edc6ac9fdee8a1fcc006cd9"), 
+        ObjectId("5edc6ac9fdee8a1fcc006cdb")
+    ], 
+    "sender" : "username2", 
+    "content" : "content that user2 send to user1", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cef"), 
+    "viewer" : [
+        "username1"
+    ], 
+    "react" : [
+        ObjectId("5edc6ac9fdee8a1fcc006cdd"), 
+        ObjectId("5edc6ac9fdee8a1fcc006cd9")
+    ], 
+    "sender" : "username3", 
+    "content" : "content that user3 send to user1", 
+    "__v" : NumberInt(0)
+}

@@ -1,0 +1,21 @@
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cca"), 
+    "connecter" : ObjectId("5edc6ac9fdee8a1fcc006cc4"), 
+    "date" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "status" : "incoming", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006ccb"), 
+    "connecter" : ObjectId("5edc6ac9fdee8a1fcc006cc6"), 
+    "date" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "status" : "missing", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006ccc"), 
+    "connecter" : ObjectId("5edc6ac9fdee8a1fcc006cc8"), 
+    "date" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "status" : "incoming", 
+    "__v" : NumberInt(0)
+}

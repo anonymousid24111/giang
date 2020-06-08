@@ -1,0 +1,21 @@
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cfb"), 
+    "dateplan" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "sender" : ObjectId("5edc6ac9fdee8a1fcc006ccd"), 
+    "content" : "meeting lesson 1 on channel 1", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cfd"), 
+    "dateplan" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "sender" : ObjectId("5edc6ac9fdee8a1fcc006ccf"), 
+    "content" : "meeting lesson 2 on channel 2", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cff"), 
+    "dateplan" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "sender" : ObjectId("5edc6ac9fdee8a1fcc006cd1"), 
+    "content" : "meeting lesson 3 on channel 3", 
+    "__v" : NumberInt(0)
+}

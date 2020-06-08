@@ -1,0 +1,27 @@
+{ 
+    "_id" : ObjectId("5eb17ed818b8ed14a803e0f1"), 
+    "stories" : [
+
+    ], 
+    "name" : "Ian Fleming", 
+    "age" : NumberInt(50), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5eb17efc8d81a12bdc96ea5f"), 
+    "stories" : [
+
+    ], 
+    "name" : "Ian Fleming", 
+    "age" : NumberInt(50), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5eb17fdc7a90151e70013457"), 
+    "stories" : [
+
+    ], 
+    "name" : "Ian Fleming", 
+    "age" : NumberInt(50), 
+    "__v" : NumberInt(0)
+}

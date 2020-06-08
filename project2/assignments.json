@@ -1,0 +1,36 @@
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cf5"), 
+    "content" : [
+        "1+1=...?"
+    ], 
+    "sender" : ObjectId("5edc6ac9fdee8a1fcc006ccd"), 
+    "status" : "assigned", 
+    "deadline" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "date" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "title" : "assignment1", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cf7"), 
+    "content" : [
+        "2+2=...?"
+    ], 
+    "sender" : ObjectId("5edc6ac9fdee8a1fcc006ccf"), 
+    "status" : "assigned", 
+    "deadline" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "date" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "title" : "assignment2", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5edc6ac9fdee8a1fcc006cf9"), 
+    "content" : [
+        "3+3=...?"
+    ], 
+    "sender" : ObjectId("5edc6ac9fdee8a1fcc006cd1"), 
+    "status" : "assigned", 
+    "deadline" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "date" : ISODate("2020-06-07T04:19:21.000+0000"), 
+    "title" : "assignment3", 
+    "__v" : NumberInt(0)
+}
