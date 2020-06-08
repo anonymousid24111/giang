@@ -1,28 +1,39 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
+import axios from 'axios'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch
+  } from "react-router-dom";
 function Call(){
+    let { path, url } = useRouteMatch();
+    const [chats, setchats] = useState();
+    useEffect(()=>{
+        axios.get('/chat').then(res=>{
+            if(res.data.chats===chats) setchats(res.data.chat)
+            // console.log(chats)
+        })
+    })
     return(
-        <div>
-            <div className="left">1callcallcallcallcallcall
-            callcallcallcallcallcall
-            callcallcallcallcallcallcallcall
-            callcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcallcall</div>
+        <Router>
+            
+            <div className="left">
+                {chats?chats.map((chat, index)=>{
+                    return(<div key={index}>
+                    <Link to={`${url}/${chat._id}`}>{chat.chatname}</Link>
+                    <div>{chat.message[0].content}</div>
+                    </div>
+                    )
+                }):'Loading'}
+                
+            </div>
             <div className="right">
-            1callcallcallcallcallcall
-            callcallcallcallcallcall
-            callcallcallcallcallcallcallcall
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
-            callcallcallcallcallcallcallc
+            <Switch>
+                <Route path="/user/chat/:id" children={<Child />} />
+                </Switch>
             </div>
         <style jsx>{`
             .left{
@@ -47,7 +58,30 @@ function Call(){
             }
         
         `}</style>
-        </div>
+        </Router>
     )
 }
 export default Call;
+function Child() {
+    // We can use the `useParams` hook here to access
+    // the dynamic pieces of the URL.
+    let { id } = useParams();
+    const [messages, setmessages] = useState();
+    useEffect(()=>{
+        axios.get( `/chat/${id}`).then((res)=>{
+            if(res.data.messages===messages){
+                setmessages(res.data.message)
+            } 
+        })
+    })
+    return (
+      <div>
+        {/* <h3>ID: {id}</h3> */}
+        {messages?messages.map((message, index)=>{
+            return(
+            <div key={index}>{message.sender}: {message.content}</div>
+            )
+        }):'loading'}
+      </div>
+    );
+  }

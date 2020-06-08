@@ -78,10 +78,15 @@ app.put('/channel/:id', channel.put);
 app.post('/channel', channel.post);
 // // app.delete('/channel/:id', channel.delete)
 
+
 app.get('/chat', chat.getAll);
+// Hien thi cac chat cua 1 user
 app.get('/chat/:id', chat.getOne)
-app.put('/chat/:id', chat.put);
+//lay tat ca tin nhan cua 1 chat
+// app.put('/chat/:id', chat.put);
+
 app.post('/chat', chat.post);
+//tao 1 phong chat moi voi nhung con nguoi moi
 // // app.delete('/chat/:id', chat.delete)
 
 app.get('/file', file.getAll);
