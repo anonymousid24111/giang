@@ -13,6 +13,11 @@ import { useCookies } from 'react-cookie';
 import Home from './HomePage';
 import Call from './user/Call';
 import Chat from './user/Chat';
+import Activity from './user/Activity';
+import Assignment from './user/Assignment';
+import Calendar from './user/Calendar';
+import File from './user/File';
+import Team from './user/Team';
 import Search from '.././components/Search'
 import checkToken from '../utils/checkToken'
 function App() {
@@ -54,29 +59,29 @@ function App() {
         <p>This sidenav is always shown.</p>
         <button onClick={()=>test()}>test</button> */}
         <Switch>
-          <Route  path="/user/activity">
+          {/* <Route  path="/user/activity">
             <Home />
-          </Route>
+          </Route> */}
           <Route  path="/user/activity">
-            <Home />
+            <Activity />
           </Route>
           <Route  path="/user/chat">
             <Chat />
           </Route>
           <Route  path="/user/assignment">
-            <Home />
+            <Assignment />
           </Route>
           <Route  path="/user/calendar">
-            <Home />
+            <Calendar />
           </Route>
           <Route  path="/user/file">
-            <Home />
+            <File />
           </Route>
           <Route  path="/user/call">
             <Call />
           </Route>
           <Route  path="/user/team">
-            <Home />
+            <Team />
           </Route>
         </Switch>
       </div>

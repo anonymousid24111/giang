@@ -1,4 +1,31 @@
 { 
+    "_id" : ObjectId("5ede9024786814326c6916e7"), 
+    "member" : [
+        ObjectId("5ede9024786814326c6916ba"), 
+        ObjectId("5ede9024786814326c6916bc")
+    ], 
+    "message" : [
+        ObjectId("5ede9024786814326c6916e1"), 
+        ObjectId("5ede9024786814326c6916e3")
+    ], 
+    "chatname" : "username2", 
+    "date" : ISODate("2020-06-08T19:23:16.000+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ede9024786814326c6916e9"), 
+    "member" : [
+        ObjectId("5ede9024786814326c6916ba"), 
+        ObjectId("5ede9024786814326c6916be")
+    ], 
+    "message" : [
+        ObjectId("5ede9024786814326c6916e5")
+    ], 
+    "chatname" : "username3", 
+    "date" : ISODate("2020-06-08T19:23:16.000+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
     "_id" : ObjectId("5edc6ac9fdee8a1fcc006cf1"), 
     "member" : [
         "username1", 

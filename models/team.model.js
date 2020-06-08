@@ -14,6 +14,7 @@ var teamScheme = new mongoose.Schema({
 	admin: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
 	member: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
 	channel: [{ type: mongoose.Schema.Types.ObjectId, ref: 'channel' }],
+	date: Date,
 	detail: String
 })
 teamModel = mongoose.model('team', teamScheme);	
