@@ -9,14 +9,19 @@ function App() {
   const { register, handleSubmit, errors } = useForm(); // initialise the hook
   const [cookies, setCookie] = useCookies(['username']);
   const [isLogin, setIsLogin] = useState(cookies.username)
-
+  const [er, seter] = useState()
   const onSubmit = (data) => {
     // var mySubmit = (event) => {
           // event.preventDefault();
           axios.post('/login',data).then(res=>{
             if(res.status===200){
-                setCookie('username', res.data)
+                setCookie('username', res.data.username)
+                setCookie('userid', res.data.userid)
+                setCookie('token', res.data.token)
                 setIsLogin(true)
+            }
+            else{
+              seter(res.data)
             }
           })
         // }
@@ -40,72 +45,8 @@ function App() {
       {errors.password && 'Password is required.'}
       <br/>
       <input type="submit" />
+      <div>{er}</div>
     </form>
   );
 }
-// function Login () {
-//   // static propTypes = {
-//   //   cookies: instanceOf(Cookies).isRequired
-//   // };
-//   var [isLogin, setIsLogin] = useState(true)
-//   var [username, setUsername] = useState('')
-//   var [password, setPassword] = useState('')
-//   // constructor(props) {
-//   //   super(props);
-//   //   state = {
-//   //     isLogin: false,
-//   //     username: '',
-//   //     password: null,
-//   //   };
-//   // }
-//   // var myChangeHandler = (event) => {
-//   //   let nam = event.target.name;
-//   //   let val = event.target.value;
-//   //   setState({[nam]: val});
-//   // }
-//   var mySubmit = (event) => {
-//     event.preventDefault();
-//     var { username, password} = state;
-//     axios.post('/login',{
-//       username: username,
-//       password: password
-//     }).then(res=>{
-//       if(res.status==200){
-//         // alert("hahahd")
-//           Cookies.set('username', res.data)
-//           setUsername('')
-//           setPassword('')
-//           setIsLogin(true)
-//       }
-//     })
-//   }
-//     return (
-      
-//       <form onSubmit={mySubmit}>
-        // {isLogin?(<Redirect
-        //     to={{
-        //       pathname: "/",
-        //       // state: { from: location }
-        //     }}
-        //   />):(<></>)}
-//       <h1>Login </h1>
-//       <p>Enter your name:</p>
-//       <input
-//         type='text'
-//         name='username'
-//         value={username}
-//         onChange={setUsername(this.value)}
-//       />
-//       <p>Enter your password:</p>
-//       <input
-//         type='password'
-//         name='password'
-//         value={password}
-//         onChange={myChangeHandler}
-//       />
-//       <br/>
-//       <button type='submit'>Login</button>
-//       </form>
-//     );
-// }
 export default App;

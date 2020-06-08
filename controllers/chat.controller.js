@@ -1,6 +1,7 @@
 var muser = require('../models/user.model');
 var mchat = require('../models/chat.model');
 var mmessage = require('../models/message.model');
+var mongoose = require('mongoose')
 module.exports.getAll = async function(req, res) {
     var data = await muser.findOne({username:req.cookies.username},"chat member").populate({
         path: 'chat',
@@ -21,7 +22,7 @@ module.exports.getAll = async function(req, res) {
 module.exports.getOne = async function(req, res) {
     var oneUser = await mchat.findById(req.params.id, function(err, docs){
         if (err) {
-            res.status(400).json(e)
+            res.status(400).json(err)
         }
     }).populate({
         path: 'message'
@@ -48,15 +49,30 @@ module.exports.put = async function(req, res) {
     if (flag) res.status(400).json("None params");
 }
 module.exports.post = async function(req, res){
-    var result = await new muser({
-        "username" : req.body.username,
-        "password" : req.body.password,
-    }).save();
-    if (req.body.password == null) {
-        res.status(400).json("Null Password");
-        return;
-    } else {
-        res.status(200).json("ngon");
+    // console.log(req.body)
+    if (!req.body.content) {
+        res.status(201).send("content miss")
+    }
+    else{
+
+        const message =await new mmessage({
+            _id: new mongoose.Types.ObjectId(),
+            sender: req.cookies.username,
+            viewer: [req.cookies.username, req.body.viewer],
+            // react: [react3._id, react1._id],
+            content: req.body.content
+        })
+        const chat = await mchat.findByIdAndUpdate(req.params.id,{
+            $push:{
+                message: message._id
+            },
+            $set:{
+                date: new Date()
+            }
+        })
+        chat.save();
+        message.save();
+        res.status(200).send('post method chat')
     }
 }
 

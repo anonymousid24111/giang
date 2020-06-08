@@ -1,5 +1,8 @@
 // require('dotenv').config();
 var express = require('express');
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 var bodyParser = require('body-parser');
 var Mongoose = require('mongoose');
 var user =require('./controllers/user.controller')
@@ -22,15 +25,38 @@ Mongoose.connect("mongodb://localhost/project2",{
 var cookieParser = require('cookie-parser')
 var jwt = require('jsonwebtoken')
 var port = 3000;
-var app = express();
+// var app = express();
+server.listen(port);
 app.use(cookieParser())
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
-app.all('/login',(req, res)=>{
-  console.log(req.body)
-  var token = jwt.sign({username: req.body.username}, "key",{ expiresIn: 30})
-  res.status(200).send(token)
+
+io.on('connection', socket => {
+  console.log(socket.id + ': connected');
+
+  socket.on("connectto",(userid)=>{
+    socket.join(userid);
+    console.log( `userid is ${userid} connected`)
+  })
+  socket.on('message', (data)=>{
+    console.log("message "+data.receiver)
+    io.to(data.sender).to(data.receiver).emit('message', 'co tin nhan moi')
+
+    // io.to(data.member[1]).emit('message', {
+    //   username: data.member[0],
+    //   content: data.content
+    // })
+    // socket.emit('message',{
+    //   username: data.member[0],
+    //   content: data.content
+    // })
+  })
+  socket.on("disconnect", () => {
+    console.log("Client disconnected");
+  });
 })
+
+app.all('/login', user.login)
 app.all('/private',(req, res)=>{
   if (!req.cookies.username) res.status(400).send('khong co tokent')
   var token = jwt.verify(req.cookies.username, 'key', function(err, decoded){
@@ -85,7 +111,7 @@ app.get('/chat/:id', chat.getOne)
 //lay tat ca tin nhan cua 1 chat
 // app.put('/chat/:id', chat.put);
 
-app.post('/chat', chat.post);
+app.post('/chat/:id', chat.post);
 //tao 1 phong chat moi voi nhung con nguoi moi
 // // app.delete('/chat/:id', chat.delete)
 
@@ -126,6 +152,6 @@ app.post('/team', team.post);
 // // app.delete('/team/:id', team.delete)
 
 
-app.listen(port, function() {
-  console.log('Server listening on port ' + port);
-});
+// app.listen(port, function() {
+//   console.log('Server listening on port ' + port);
+// });
