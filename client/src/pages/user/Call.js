@@ -13,9 +13,12 @@ function Call(){
             // alert('cos nguo goii')
             setcallden(data)
         })
-        socket.emit('useronline');
+        socket.on('useronline',data=>{
+            if(data!==useronline) setuseronline(data)
+        })
+        // socket.emit('useronline');
         
-    },[useronline, callden])
+    },[callden])
 
     useEffect(()=>{
         // socket.disconnect()
@@ -24,33 +27,36 @@ function Call(){
         socket.emit("connectto", {
             username: cookies.username,
             userid: cookies.userid});
-            
-        socket.on('useronline',data=>{
-            if(data!==useronline) setuseronline(data)
-            
-        })
+        socket.emit('useronline');
+        
     },[])
     var call =(e)=>{
         socket.emit('call',{
             receiver: e,
             sender: cookies.userid,
             namesen: cookies.username
-        })
+        });
+        setcallden({namesen: cookies.username})
     }
     return(
-        <div><div>call</div>
+        <div><div>Click vao username to goi:</div>
         <ul>
 
         {useronline?useronline.map((user, index)=>{
             return(
                 <li key={user.userid} onClick={e=>call(user.userid)}>
                     {/* {user.username} */}
-                <a href={`https://itshello.co/${user.userid}`} target="_blank">{user.username}</a>
+                <a href={`http://localhost:3000/room/${user.userid}`} target="_blank">{user.username}</a>
                 </li>
             )
         }):"loading..."}
         </ul>
-        {callden?(<>{callden.namesen} dang goi ban: <a href={`https://itshello.co/${callden.receiver}`} target="_blank">Link</a></>):""}
+        {
+        callden?(
+            (callden.namesen===cookies.username)?(<>Ban dang doi ai do: <a href={`https://itshello.co/${callden.receiver}`} target="_blank">Link</a></>):
+        <>{callden.namesen} dang goi ban: <a href={`https://itshello.co/${callden.receiver}`} target="_blank">Link</a></>):""
+    }
+        
         </div>
     )
 }

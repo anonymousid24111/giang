@@ -1,6 +1,14 @@
 var mcalendar = require('../models/calendar.model');
+var muser = require('../models/user.model');
+
 module.exports.getAll = async function(req, res) {
-    var allcalendar = await mcalendar.find({});
+    var allcalendar = await muser.findOne({_id: req.cookies.userid}).populate({
+        path: 'calendar',
+        populate:{
+            path: 'sender',
+            // select: ''
+        }
+    });
     res.status(200).json(allcalendar);
 };
 module.exports.getOne = async function(req, res) {

@@ -31,9 +31,12 @@ app.use(cookieParser())
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 var useronline = []
+const channels = {};
+const sockets = {};
 io.on('connection', socket => {
   console.log(socket.id + ': connected');
-
+  socket.channels = {};
+  sockets[socket.id] = socket;
   socket.on("connectto",(data)=>{
     var {userid, username}= data;
     socket.join(data.userid);
@@ -73,7 +76,76 @@ io.on('connection', socket => {
     console.log(data.receiver);
     io.to(data.receiver).emit('call',data);
   })
+
+  socket.on('join', (config) => {
+    // console.log("[" + socket.id + "] join ", config);
+    const channel = config.channel;
+    // const userdata = config.userdata;
+
+    if (channel in socket.channels) {
+        // console.log("[" + socket.id + "] ERROR: already joined ", channel);
+        return;
+    }
+
+    if (!(channel in channels)) {
+        channels[channel] = {};
+    }
+
+    for (id in channels[channel]) {
+        channels[channel][id].emit('addPeer', {'peer_id': socket.id, 'should_create_offer': false});
+        socket.emit('addPeer', {'peer_id': id, 'should_create_offer': true});
+    }
+
+    channels[channel][socket.id] = socket;
+    socket.channels[channel] = channel;
+});
+
+const part = (channel) => {
+    // console.log("[" + socket.id + "] part ");
+
+    if (!(channel in socket.channels)) {
+        // console.log("[" + socket.id + "] ERROR: not in ", channel);
+        return;
+    }
+
+    delete socket.channels[channel];
+    delete channels[channel][socket.id];
+
+    for (id in channels[channel]) {
+        channels[channel][id].emit('removePeer', {'peer_id': socket.id});
+        socket.emit('removePeer', {'peer_id': id});
+    }
+}
+socket.on('part', part);
+
+socket.on('relayICECandidate', (config) => {
+    let peer_id = config.peer_id;
+    let ice_candidate = config.ice_candidate;
+    // console.log("[" + socket.id + "] relaying ICE candidate to [" + peer_id + "] ", ice_candidate);
+
+    if (peer_id in sockets) {
+        sockets[peer_id].emit('iceCandidate', {'peer_id': socket.id, 'ice_candidate': ice_candidate});
+    }
+});
+
+socket.on('relaySessionDescription', (config) => {
+    let peer_id = config.peer_id;
+    let session_description = config.session_description;
+    // console.log("[" + socket.id + "] relaying session description to [" + peer_id + "] ", session_description);
+
+    if (peer_id in sockets) {
+        sockets[peer_id].emit('sessionDescription', {
+            'peer_id': socket.id,
+            'session_description': session_description
+        });
+    }
+});
   socket.on("disconnect", () => {
+    for (const channel in socket.channels) {
+      part(channel);
+    }
+    // console.log("[" + socket.id + "] disconnected");
+    delete sockets[socket.id];
     for (let index = 0; index < useronline.length; index++) {
       // const element = useronline[index];
       if(useronline){
@@ -107,6 +179,7 @@ app.all('/private',(req, res)=>{
     }
   })
 })
+app.get(['/room', '/room/:room'], (req, res) => res.sendFile(__dirname + '/client/public/call.html'));
 
 app.get('/', (req, res)=>{
   res.send("ahhahaha")
@@ -188,6 +261,11 @@ app.get('/team', team.getAll);
 app.get('/team/:id', team.getOne)
 app.put('/team/:id', team.put);
 app.post('/team', team.post);
+app.get('/remove/team/:id', team.remove)
+app.post('/member/team', team.newmem)
+app.get('/removemem/team/:id', team.removemem)
+app.get('/remove/channel/:id', team.removechannel)
+app.get('/remove/post/:id', team.removepost)
 // // app.delete('/team/:id', team.delete)
 
 

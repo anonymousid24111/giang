@@ -8,6 +8,7 @@ var channelScheme = new mongoose.Schema({
 	channelname: String,
 	post: [{ type: mongoose.Schema.Types.ObjectId, ref: 'post' }],
 	file: [{ type: mongoose.Schema.Types.ObjectId, ref: 'file' }],
+	assignment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'assignment' }],
 })
 channelModel = mongoose.model('channel', channelScheme);	
 module.exports = channelModel;

@@ -1,6 +1,17 @@
 var massignment = require('../models/assignment.model');
+var muser = require('../models/user.model');
 module.exports.getAll = async function(req, res) {
-    var allassignment = await massignment.find({});
+    var allassignment = await muser.findOne({_id: req.cookies.userid}).populate({
+        path: 'assignment',
+        populate:{
+            path: 'sender',
+            select: "admin",
+            populate:{
+                path: 'admin',
+                select: 'username'
+            }
+        }
+    });
     res.status(200).json(allassignment);
 };
 module.exports.getOne = async function(req, res) {

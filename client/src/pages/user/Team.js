@@ -69,6 +69,34 @@ function Call(){
             }
         })
     }
+    var leaveteam=(data)=>{
+        axios.get('/remove/team/'+data.target.name).then(res=>{
+            if (res.status===200) {
+                setteamname("")
+                axios.get('/team').then(async res2=>{
+                    if (res2.status===200) {
+                        var temp=[]
+                        await res2.data.team.map((t,index)=>{
+                            // console.log(t.admin)
+                            if(t.admin[0]._id===cookies.userid){
+                                
+                                return temp.push(t);
+                            }
+                        })
+                        setteamsadmin(temp);
+                        setteams(res2.data.team)
+        
+                    } else {
+                        console.log('co loi server')
+                    }
+                })
+            }
+            else{
+                console.log('cos loi gif do')
+            }
+        })
+        // alert(data.target.name)
+    }
     return(
         <Router>
             {teamcurrent?<OneTeam idp={teamcurrent}/>:(
@@ -78,7 +106,11 @@ function Call(){
                 <ul>
                     {teams?teams.map((team, index)=>{
                         return(
-                            <li key={index} onClick={e=>setteamcurrent(team._id)}><Link to={"/user/team/"+team._id}>Teamname1: {team.teamname}</Link></li>
+                            <>
+                            <li key={index} onClick={e=>setteamcurrent(team._id)}><Link to={"/user/team/"+team._id}>Teamname: {team.teamname}</Link>
+                            </li>
+                            <button name={team._id} onClick={e=>leaveteam(e)}>Leave this team</button>
+                            </>
                         )
                     }):"loading..."}
                 </ul>
@@ -86,7 +118,7 @@ function Call(){
                 <ul>
                     {teamsadmin?teamsadmin.map((team, index)=>{
                         return(
-                        <li key={index} onClick={e=>setteamcurrent(team._id)}><Link to={"/user/team/"+team._id}>Teamname1: {team.teamname}</Link></li>
+                        <li key={index} onClick={e=>setteamcurrent(team._id)}><Link to={"/user/team/"+team._id}>Teamname: {team.teamname}</Link></li>
                         )
                     }):"loading..."}
                 </ul>

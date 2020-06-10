@@ -27,7 +27,7 @@ function Chat(){
 
     
     useEffect(()=>{
-        console.log('chay lan dau tien'+chatroomid)
+        // console.log('chay lan dau tien'+chatroomid)
         socket.emit("connectto", {
             username: cookies.username,
             userid: cookies.userid});
@@ -44,20 +44,9 @@ function Chat(){
                 })
             }
         })
-    },[])
-    useEffect(()=>{
-        // socket.on('call',data=>{
-        //     alert('chat')
-        // })
-        // console.log('chi chay khi chatroomid thay doi: '+chatroomid)
-        if(chatroomid){
-            axios.get( `/chat/${chatroomid}`).then((res)=>{
-                setmessages(res.data.message);
-            })
-        }
         socket.on('message', data=>{
             // alert('co tin nhan ')
-            console.log('effect 2 mess'+chatroomid)
+            // console.log('effect 2 mess'+chatroomid)
             axios.get('/chat').then(res=>{
                 setchats(res.data.chat);
             })
@@ -69,6 +58,31 @@ function Chat(){
             // }
             
         })
+    },[])
+    useEffect(()=>{
+        // socket.on('call',data=>{
+        //     alert('chat')
+        // })
+        // console.log('chi chay khi chatroomid thay doi: '+chatroomid)
+        if(chatroomid){
+            axios.get( `/chat/${chatroomid}`).then((res)=>{
+                setmessages(res.data.message);
+            })
+        }
+        // socket.on('message', data=>{
+        //     // alert('co tin nhan ')
+        //     // console.log('effect 2 mess'+chatroomid)
+        //     axios.get('/chat').then(res=>{
+        //         setchats(res.data.chat);
+        //     })
+        //     console.log(chatroomid)
+        //     // if(chatroomid){
+        //     axios.get( `/chat/${data.chatroomid}`).then((res)=>{
+        //             setmessages(res.data.message);
+        //         })
+        //     // }
+            
+        // })
         
         console.log('cuoi e3; '+chatroomid)
     },[chatroomid])
@@ -77,7 +91,7 @@ function Chat(){
         e.preventDefault();
         if(chatroomid){
             
-    
+            setcontent('')
             axios.post(`/chat/${chatroomid}`,{
                 content: content,
                 viewer: receiverid,
@@ -109,7 +123,7 @@ function Chat(){
         <Router>
             
             <div className="left">
-                {chatroomid}
+                {/* {chatroomid} */}
                 {chats?chats.map((chat, index)=>{
                     return(<div key={index} onClick={e=>{setchatroomid(chat._id);setreceiverid(chat.member)}}>
                     <Link to={`${url}/${chat._id}`} >{chat.chatname}{chat.member.length}</Link>
