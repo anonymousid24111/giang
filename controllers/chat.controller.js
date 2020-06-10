@@ -8,6 +8,10 @@ module.exports.getAll = async function(req, res) {
         // select: 'chat',
         populate: [{ 
             path: 'message',
+            populate:{
+                path: "sender",
+                select: 'username'
+            },
             options:{ sort:{date : -1}}
             // select: ''
             // populate: {path: 'sender'},
@@ -16,6 +20,7 @@ module.exports.getAll = async function(req, res) {
         },
         { 
             path: 'member',
+            
             // path: 'message',
             select: 'username'
         }],
@@ -35,6 +40,9 @@ module.exports.getOne = async function(req, res) {
             }
         }).populate({
             path: 'message',
+            populate:{
+                path: 'sender'
+            },
             options:{ sort:{date : -1}}
         })
         res.status(200).json(oneUser)

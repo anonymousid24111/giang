@@ -1,0 +1,24 @@
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f70043684"), 
+    "sender" : ObjectId("5ee0c7222dd9642f70043665"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "subject" : "user2 reacted to sad for post you upload in ", 
+    "link" : "http://localhost:3000/user/post?channel=chanel1&team=team1&postid=5ee0c7222dd9642f7004367e", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f70043686"), 
+    "sender" : ObjectId("5ee0c7222dd9642f70043665"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "subject" : "user3 reacted to love for post you upload in ", 
+    "link" : "http://localhost:3000/user/post?channel=chanel2&team=team2&postid=5ee0c7222dd9642f70043680", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f70043688"), 
+    "sender" : ObjectId("5ee0c7222dd9642f70043665"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "subject" : "user1 reacted to haha for post you upload in ", 
+    "link" : "http://localhost:3000/user/post?channel=chanel3&team=team3&postid=5ee0c7222dd9642f70043682", 
+    "__v" : NumberInt(0)
+}

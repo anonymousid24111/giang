@@ -1,0 +1,130 @@
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f70043663"), 
+    "contact" : [
+        ObjectId("5ee0c7222dd9642f70043665")
+    ], 
+    "history" : [
+        ObjectId("5ee0c7222dd9642f70043669"), 
+        ObjectId("5ee0c7222dd9642f7004366a")
+    ], 
+    "team" : [
+        ObjectId("5ee0c7222dd9642f70043676"), 
+        ObjectId("5ee0c7222dd9642f7004366c"), 
+        ObjectId("5ee0c7222dd9642f7004366e")
+    ], 
+    "activity" : [
+        ObjectId("5ee0c7222dd9642f70043684"), 
+        ObjectId("5ee0c7222dd9642f70043686"), 
+        ObjectId("5ee0c7222dd9642f70043688")
+    ], 
+    "chat" : [
+        ObjectId("5ee0c7222dd9642f70043690"), 
+        ObjectId("5ee0c7222dd9642f70043692")
+    ], 
+    "assignment" : [
+        ObjectId("5ee0c7222dd9642f70043694"), 
+        ObjectId("5ee0c7222dd9642f70043696"), 
+        ObjectId("5ee0c7222dd9642f70043698")
+    ], 
+    "calendar" : [
+        ObjectId("5ee0c7222dd9642f7004369a"), 
+        ObjectId("5ee0c7222dd9642f7004369c"), 
+        ObjectId("5ee0c7222dd9642f7004369e")
+    ], 
+    "file" : [
+        ObjectId("5ee0c7222dd9642f7004365d"), 
+        ObjectId("5ee0c7222dd9642f7004365f"), 
+        ObjectId("5ee0c7222dd9642f70043661")
+    ], 
+    "username" : "username1", 
+    "avatar" : "username1.jpg", 
+    "sex" : "male", 
+    "email" : "username1@gmail.com", 
+    "birthday" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "password" : "password", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f70043665"), 
+    "contact" : [
+        ObjectId("5ee0c7222dd9642f70043663")
+    ], 
+    "history" : [
+
+    ], 
+    "team" : [
+        ObjectId("5ee0c7222dd9642f70043676"), 
+        ObjectId("5ee0c7222dd9642f7004366c"), 
+        ObjectId("5ee0c7222dd9642f7004366e")
+    ], 
+    "activity" : [
+
+    ], 
+    "chat" : [
+        ObjectId("5ee0c7222dd9642f70043690")
+    ], 
+    "assignment" : [
+        ObjectId("5ee0c7222dd9642f70043694"), 
+        ObjectId("5ee0c7222dd9642f70043696"), 
+        ObjectId("5ee0c7222dd9642f70043698")
+    ], 
+    "calendar" : [
+        ObjectId("5ee0c7222dd9642f7004369a"), 
+        ObjectId("5ee0c7222dd9642f7004369c"), 
+        ObjectId("5ee0c7222dd9642f7004369e")
+    ], 
+    "file" : [
+        ObjectId("5ee0c7222dd9642f7004365d"), 
+        ObjectId("5ee0c7222dd9642f7004365f"), 
+        ObjectId("5ee0c7222dd9642f70043661")
+    ], 
+    "username" : "username2", 
+    "avatar" : "username2.jpg", 
+    "sex" : "male", 
+    "email" : "username2@gmail.com", 
+    "birthday" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "password" : "password", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f70043667"), 
+    "contact" : [
+        ObjectId("5ee0c7222dd9642f70043663")
+    ], 
+    "history" : [
+
+    ], 
+    "team" : [
+        ObjectId("5ee0c7222dd9642f70043676"), 
+        ObjectId("5ee0c7222dd9642f7004366c"), 
+        ObjectId("5ee0c7222dd9642f7004366e")
+    ], 
+    "activity" : [
+
+    ], 
+    "chat" : [
+        ObjectId("5ee0c7222dd9642f70043692")
+    ], 
+    "assignment" : [
+        ObjectId("5ee0c7222dd9642f70043694"), 
+        ObjectId("5ee0c7222dd9642f70043696"), 
+        ObjectId("5ee0c7222dd9642f70043698")
+    ], 
+    "calendar" : [
+        ObjectId("5ee0c7222dd9642f7004369a"), 
+        ObjectId("5ee0c7222dd9642f7004369c"), 
+        ObjectId("5ee0c7222dd9642f7004369e")
+    ], 
+    "file" : [
+        ObjectId("5ee0c7222dd9642f7004365d"), 
+        ObjectId("5ee0c7222dd9642f7004365f"), 
+        ObjectId("5ee0c7222dd9642f70043661")
+    ], 
+    "username" : "username3", 
+    "avatar" : "username3.jpg", 
+    "sex" : "male", 
+    "email" : "username3@gmail.com", 
+    "birthday" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "password" : "password", 
+    "__v" : NumberInt(0)
+}

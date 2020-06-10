@@ -30,13 +30,31 @@ server.listen(port);
 app.use(cookieParser())
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
-
+var useronline = []
 io.on('connection', socket => {
   console.log(socket.id + ': connected');
 
-  socket.on("connectto",(userid)=>{
-    socket.join(userid);
-    console.log( `userid is ${userid} connected`)
+  socket.on("connectto",(data)=>{
+    var {userid, username}= data;
+    socket.join(data.userid);
+    var isconnect= false
+    useronline.forEach(element => {
+      if(element.userid===data.userid){
+        console.log('da connect');
+        isconnect= true;
+      }
+    });
+    if(!isconnect){
+
+      
+      useronline.push({userid: userid, username: username, socketid: socket.id})
+      console.log( `userid is ${data.userid} connected`)
+    }
+  })
+  socket.on("useronline",()=>{
+    // console.log('on useronline')
+    // console.log(useronline)
+    io.emit("useronline",useronline)
   })
   socket.on('message', (data)=>{
     console.log(data.receiver)
@@ -51,7 +69,28 @@ io.on('connection', socket => {
     //   content: data.content
     // })
   })
+  socket.on('call',data=>{
+    console.log(data.receiver);
+    io.to(data.receiver).emit('call',data);
+  })
   socket.on("disconnect", () => {
+    for (let index = 0; index < useronline.length; index++) {
+      // const element = useronline[index];
+      if(useronline){
+
+        if((useronline[index].socketid===socket.id)) {
+          // console.log('s');
+          useronline.splice(index, 1)
+          break;
+        }
+      }
+    }
+    // useronline.forEach(element => {
+    //   if(element.socketid===socket.id) {
+    //     console.log('s');
+    //     delete element
+    //   }
+    // });
     console.log("Client disconnected");
   });
 })

@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { useCookies } from 'react-cookie';
 import axios from 'axios'
-import socketIOClient from "socket.io-client";
 
 import {
     BrowserRouter as Router,
@@ -12,6 +11,7 @@ import {
     useRouteMatch
 } from "react-router-dom";
 import Message from '../../components/Message'
+import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:3000";
 const socket = socketIOClient(ENDPOINT);
 function Chat(){
@@ -28,7 +28,9 @@ function Chat(){
     
     useEffect(()=>{
         console.log('chay lan dau tien'+chatroomid)
-        socket.emit("connectto", cookies.userid);
+        socket.emit("connectto", {
+            username: cookies.username,
+            userid: cookies.userid});
         axios.get('/chat').then(res=>{
             setchats(res.data.chat);
             if((res.status===200)&&(!chatroomid)) {setmessages(res.data.chat[0].message);
@@ -44,8 +46,10 @@ function Chat(){
         })
     },[])
     useEffect(()=>{
-
-        console.log('chi chay khi chatroomid thay doi: '+chatroomid)
+        // socket.on('call',data=>{
+        //     alert('chat')
+        // })
+        // console.log('chi chay khi chatroomid thay doi: '+chatroomid)
         if(chatroomid){
             axios.get( `/chat/${chatroomid}`).then((res)=>{
                 setmessages(res.data.message);
@@ -65,6 +69,7 @@ function Chat(){
             // }
             
         })
+        
         console.log('cuoi e3; '+chatroomid)
     },[chatroomid])
 
@@ -124,7 +129,7 @@ function Chat(){
                     
                     {messages?messages.map((message, index)=>{
                         return(
-                        <div key={index}>{message.sender}: {message.content}</div>
+                        <div key={index}>{message.sender.username}: {message.content}</div>
                         )
                     }):'loading'}
                 </div>
@@ -132,7 +137,7 @@ function Chat(){
         <style jsx>{`
             .left{
                 width: 30%;
-                background-color: red;
+                // background-color: red;
                 float: left;
                 // height: 100%;
                 height: 100%;
@@ -143,7 +148,7 @@ function Chat(){
                 float: left;
                 width: 60%;
                 display: block;
-                background-color: blue;
+                // background-color: blue;
                 height: 100%;
                 position: fixed;
                 margin-left: 30%;

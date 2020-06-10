@@ -1,0 +1,42 @@
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f7004368a"), 
+    "viewer" : [
+        ObjectId("5ee0c7222dd9642f70043665")
+    ], 
+    "react" : [
+        ObjectId("5ee0c7222dd9642f70043678"), 
+        ObjectId("5ee0c7222dd9642f7004367a")
+    ], 
+    "sender" : ObjectId("5ee0c7222dd9642f70043663"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "content" : "content that user1 send to user2", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f7004368c"), 
+    "viewer" : [
+        ObjectId("5ee0c7222dd9642f70043663")
+    ], 
+    "react" : [
+        ObjectId("5ee0c7222dd9642f70043678"), 
+        ObjectId("5ee0c7222dd9642f7004367a")
+    ], 
+    "sender" : ObjectId("5ee0c7222dd9642f70043665"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "content" : "content that user2 send to user1", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f7004368e"), 
+    "viewer" : [
+        ObjectId("5ee0c7222dd9642f70043663")
+    ], 
+    "react" : [
+        ObjectId("5ee0c7222dd9642f7004367c"), 
+        ObjectId("5ee0c7222dd9642f70043678")
+    ], 
+    "sender" : ObjectId("5ee0c7222dd9642f70043667"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "content" : "content that user3 send to user1", 
+    "__v" : NumberInt(0)
+}

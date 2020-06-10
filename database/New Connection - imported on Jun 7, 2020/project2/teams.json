@@ -1,0 +1,53 @@
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f7004366c"), 
+    "admin" : [
+        ObjectId("5ee0c7222dd9642f70043665")
+    ], 
+    "member" : [
+        ObjectId("5ee0c7222dd9642f70043663"), 
+        ObjectId("5ee0c7222dd9642f70043667")
+    ], 
+    "channel" : [
+
+    ], 
+    "teamname" : "team2", 
+    "avatar" : "team2.jpg", 
+    "detail" : "This is team2. User2 is an admin. User1 and user3 are menbers!", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f7004366e"), 
+    "admin" : [
+        ObjectId("5ee0c7222dd9642f70043667")
+    ], 
+    "member" : [
+        ObjectId("5ee0c7222dd9642f70043665"), 
+        ObjectId("5ee0c7222dd9642f70043663")
+    ], 
+    "channel" : [
+
+    ], 
+    "teamname" : "team3", 
+    "avatar" : "team3.jpg", 
+    "detail" : "This is team3. User3 is an admin. User2 and user1 are menbers!", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f70043676"), 
+    "admin" : [
+        ObjectId("5ee0c7222dd9642f70043663")
+    ], 
+    "member" : [
+        ObjectId("5ee0c7222dd9642f70043665"), 
+        ObjectId("5ee0c7222dd9642f70043667")
+    ], 
+    "channel" : [
+        ObjectId("5ee0c7222dd9642f70043670"), 
+        ObjectId("5ee0c7222dd9642f70043672"), 
+        ObjectId("5ee0c7222dd9642f70043674")
+    ], 
+    "teamname" : "team1", 
+    "avatar" : "team1.jpg", 
+    "detail" : "This is team1. User1 is an admin. User2 and user3 are menbers!", 
+    "__v" : NumberInt(0)
+}

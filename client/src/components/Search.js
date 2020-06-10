@@ -9,15 +9,15 @@ function Search(){
     const [key, setkey] = useState();
     const [display, setdisplay] = useState('none')
     const handleChange =async (e)=>{
-        // setkey(e.target.value);
+        
         axios.get(`/search?username=${e.target.value}`).then(res=>{
             if(res.data.length){
                 setusers(res.data)
 
             }
         });
-        // setusers(data);
-    }
+        // document.getElementById("main").innerHTML = "Hello JavaScript";
+      }
     const logout = () =>{
       // alert('logit')
       removeCookie('userid');
@@ -32,7 +32,7 @@ function Search(){
             <a className="active" onClick={e=>logout()}><img src='/avatar.jpg' alt='avatar'/></a>
             <div className="search-container">
                 <form action="/action_page.php">
-                <input type="text" autoComplete="off" placeholder="Search.." name="search" onChange={handleChange} onBlur={e=>setdisplay('none')} onFocus={e=>setdisplay('block')}/>
+                <input type="text" autoComplete="off" placeholder="Search.." name="search" onChange={handleChange} onBlur={e=>{setdisplay('none');setusers(null)}} onFocus={e=>setdisplay('block')}/>
                 <button type="submit">Submit</button>
                 <div className="dropdown-content" style={{display: display}}>
                     {users?

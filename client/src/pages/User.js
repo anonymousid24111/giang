@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React,{ useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -9,6 +9,7 @@ import {
   useRouteMatch
 } from "react-router-dom";
 // import axios from 'axios'
+// import { useCookies } from 'react-cookie';
 import { useCookies } from 'react-cookie';
 import Home from './HomePage';
 import Call from './user/Call';
@@ -20,18 +21,18 @@ import File from './user/File';
 import Team from './user/Team';
 import Search from '.././components/Search'
 import checkToken from '../utils/checkToken'
+import OneTeam from "../components/OneTeam";
+import socketIOClient from "socket.io-client";
+const ENDPOINT = "http://localhost:3000";
+const socket = socketIOClient(ENDPOINT);
 function App() {
   const [cookies, setCookie] = useCookies(['username']);
   const [isLogin, setIsLogin] = useState(cookies.username)
-
-  // const onSubmit = (data) => {
-  //         axios.post('/login',data).then(res=>{
-  //           if(res.status==200){
-  //               setCookie('username', res.data)
-  //               setIsLogin(true)
-  //           }
-  //         })
-  // };
+  useEffect(()=>{
+    socket.emit("connectto", {
+      username: cookies.username,
+      userid: cookies.userid});
+  },[])
   const test = ()=>{
     checkToken()
   }
@@ -80,8 +81,11 @@ function App() {
           <Route  path="/user/call">
             <Call />
           </Route>
-          <Route  path="/user/team">
+          <Route exact path="/user/team">
             <Team />
+          </Route>
+          <Route  path="/user/team/:id">
+            <OneTeam id={null}/>
           </Route>
         </Switch>
       </div>

@@ -1,0 +1,42 @@
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f7004367e"), 
+    "react" : [
+        ObjectId("5ee0c7222dd9642f7004367a"), 
+        ObjectId("5ee0c7222dd9642f7004367c")
+    ], 
+    "reply" : [
+
+    ], 
+    "sender" : ObjectId("5ee0c7222dd9642f70043663"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "content" : "content of post1", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f70043680"), 
+    "react" : [
+
+    ], 
+    "reply" : [
+
+    ], 
+    "sender" : ObjectId("5ee0c7222dd9642f70043665"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "content" : "content of post2", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f70043682"), 
+    "react" : [
+        ObjectId("5ee0c7222dd9642f70043678"), 
+        ObjectId("5ee0c7222dd9642f7004367a")
+    ], 
+    "reply" : [
+        ObjectId("5ee0c7222dd9642f7004367e"), 
+        ObjectId("5ee0c7222dd9642f70043680")
+    ], 
+    "sender" : ObjectId("5ee0c7222dd9642f70043667"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "content" : "content of post3", 
+    "__v" : NumberInt(0)
+}

@@ -1,0 +1,21 @@
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f70043669"), 
+    "connecter" : ObjectId("5ee0c7222dd9642f70043663"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "status" : "incoming", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f7004366a"), 
+    "connecter" : ObjectId("5ee0c7222dd9642f70043665"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "status" : "missing", 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ee0c7222dd9642f7004366b"), 
+    "connecter" : ObjectId("5ee0c7222dd9642f70043667"), 
+    "date" : ISODate("2020-06-10T11:42:26.000+0000"), 
+    "status" : "incoming", 
+    "__v" : NumberInt(0)
+}
