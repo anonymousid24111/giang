@@ -78,3 +78,18 @@ module.exports.login =async (req, res)=>{
     console.log(req.body)
     
   }
+  module.exports.signup = async (req, res)=>{
+    var existed = await muser.findOne({username: req.body.username});
+    console.log('adsjflkjjakldsfjkl')
+    console.log(existed)
+    if(existed) return res.status(201).json('user existed')
+    if (req.body.password == null) {
+        res.status(201).json("Null password");
+    } else {
+        var result = await new muser({
+            username : req.body.username,
+            password : req.body.password,
+        }).save();
+        res.status(200).json(result);
+    }
+  }

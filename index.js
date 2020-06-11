@@ -168,6 +168,8 @@ socket.on('relaySessionDescription', (config) => {
 })
 
 app.all('/login', user.login)
+app.post('/signup', user.signup)
+app.get('/postchat',chat.postchat)
 app.all('/private',(req, res)=>{
   if (!req.cookies.username) res.status(400).send('khong co tokent')
   var token = jwt.verify(req.cookies.username, 'key', function(err, decoded){

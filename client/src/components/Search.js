@@ -3,6 +3,7 @@ import axios from "axios"
 import { set } from "mongoose";
 import { useCookies } from 'react-cookie';
 import { Redirect } from "react-router-dom";
+// import { postchat } from "../../../controllers/chat.controller";
 function Search(){
   const [cookies, setCookie, removeCookie] = useCookies(['name']);
     const [users, setusers] = useState();
@@ -26,6 +27,17 @@ function Search(){
       removeCookie('io');
       return window.location.href = '/login';
   }
+    var postchat =(e)=>{
+      alert('jsdkfj')
+      // axios.get(`/postchat?receiver=${e.target.name}`).then(res=>{
+      //   if (res.status===200) {
+      //     alert('thanh cong')
+      //   }
+      // })
+    }
+    var posschat =(event)=>{
+      console.log('jdfkajskdlfjlaksdjflkasjdflk')
+    }
     return(
         <div >
         <div className="topnav">
@@ -38,10 +50,10 @@ function Search(){
                     {users?
                         users.map((user, index)=>{
                             return(
-                            <p key={index}>{user.username}</p>
+                            <div key={index} name={user._id} onClick={e=>posschat(e)}>{user.username}</div>
                             )
                         })
-                    :(<></>)}
+                    :("")}
                 </div>
                 </form>
             </div>

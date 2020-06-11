@@ -95,4 +95,25 @@ module.exports.post = async function(req, res){
         res.status(200).send('post method chat')
     }
 }
+module.exports.postchat = async (req, res)=>{
+    console.log('ahdsfja')
+    var da = await muser.findOne({username: req.query.receiver})
+    var nchat=await new mchat({
+        _id: new mongoose.Types.ObjectId(),
+        chatname: req.query.receiver,
+        member: [ req.cookies.userid, da._id],
+        date: Date(),
+    }).save()
+    await muser.findOneAndUpdate({_id: req.cookies.userid},{
+        $push:{
+            chat: nchat._id
+        }
+    })
+    await muser.findOneAndUpdate({_id: da._id},{
+        $push:{
+            chat: nchat._id
+        }
+    })
+    res.status(200)
+}
 

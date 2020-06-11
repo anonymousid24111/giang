@@ -12,6 +12,8 @@ import {
 } from "react-router-dom";
 import Message from '../../components/Message'
 import socketIOClient from "socket.io-client";
+// import { postchat } from '../../../../controllers/chat.controller';
+// import user from '../../../../models/user.model';
 const ENDPOINT = "http://localhost:3000";
 const socket = socketIOClient(ENDPOINT);
 function Chat(){
@@ -24,6 +26,7 @@ function Chat(){
     
     const [messages, setmessages] = useState();
     const [content, setcontent] = useState();
+    const [username, setusername] = useState();
 
     
     useEffect(()=>{
@@ -33,9 +36,14 @@ function Chat(){
             userid: cookies.userid});
         axios.get('/chat').then(res=>{
             setchats(res.data.chat);
-            if((res.status===200)&&(!chatroomid)) {setmessages(res.data.chat[0].message);
-                setchatroomid(res.data.chat[0]._id)
-                setreceiverid(res.data.chat[0].member)
+            if((res.status===200)&&(!chatroomid)) {
+                if(res.data.chat[0]){
+                    setmessages(res.data.chat[0].message);
+
+                    setchatroomid(res.data.chat[0]._id)
+                    setreceiverid(res.data.chat[0].member)
+                } 
+                
             }
             else if(chatroomid){
                 // setchatroomid
@@ -119,15 +127,29 @@ function Chat(){
         }
         
     }
+    var postchat=(e)=>{
+        e.preventDefault()
+        axios.get( `/postchat?receiver=${username}`).then(res=>{
+            if (res.status===200) {
+                alert('thanjcong')
+            } else {
+                alert('that bai')
+            }
+        }) 
+    } 
     return(
         <Router>
             
             <div className="left">
                 {/* {chatroomid} */}
+                <form onSubmit={postchat}>
+                    <input type='text' value={username} onChange={e=>setusername(e.target.value)}/>
+                    <button type='submit'>Create a chat</button>
+                </form>
                 {chats?chats.map((chat, index)=>{
                     return(<div key={index} onClick={e=>{setchatroomid(chat._id);setreceiverid(chat.member)}}>
-                    <Link to={`${url}/${chat._id}`} >{chat.chatname}{chat.member.length}</Link>
-                    {chat.message?<div>{chat.message[0].content}</div> :'loading...'}
+                    <Link to={`${url}/${chat._id}`} >{chat.chatname}</Link><br/>
+                    {chat.message[0]?<div>{chat.message[0].content}</div> :'loading...'}
                     {/* <div>{chat.message[0].content}</div> */}
                     </div>
                     )
