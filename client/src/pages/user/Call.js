@@ -53,8 +53,8 @@ function Call(){
         </ul>
         {
         callden?(
-            (callden.namesen===cookies.username)?(<>Ban dang doi ai do: <a href={`https://itshello.co/${callden.receiver}`} target="_blank">Link</a></>):
-        <>{callden.namesen} dang goi ban: <a href={`https://itshello.co/${callden.receiver}`} target="_blank">Link</a></>):""
+            (callden.namesen===cookies.username)?(<>Ban dang doi ai do: <a href={`http://localhost:3000/room/${callden.receiver}`} target="_blank">Link</a></>):
+        <>{callden.namesen} dang goi ban: <a href={`http://localhost:3000/room/${callden.receiver}`} target="_blank">Link</a></>):""
     }
         
         </div>
